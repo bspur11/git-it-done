@@ -1,5 +1,22 @@
 var issueContainerEl = document.querySelector("#issues-container");
 var limitWarningEl = document.querySelector("#limit-warning");
+var queryString = document.location.search;
+var repoName = queryString.split("=")[1];
+var repoNameEl = document.querySelector("#repo-name");
+
+
+//  to split meth to get quary Value 644
+
+var getrepoName = function () {
+  var queryString = document.location.search;
+  var repoName = queryString.split("=")[1];
+  getRepoIssues(repoName);
+  repoNameEl.textContent = repoName;
+  console.log(repoName);
+};
+
+
+
 
 var displayWarning = function (repo) {
 
@@ -85,4 +102,5 @@ var displayIssues = function (issues) {
 
 
 
-getRepoIssues("angular/angular");
+
+getrepoName();
