@@ -8,10 +8,19 @@ var repoNameEl = document.querySelector("#repo-name");
 //  to split meth to get quary Value 644
 
 var getrepoName = function () {
+  // get repo name from url query string
   var queryString = document.location.search;
   var repoName = queryString.split("=")[1];
-  getRepoIssues(repoName);
-  repoNameEl.textContent = repoName;
+
+  if (repoName) {
+    // display repo name on the page
+    repoNameEl.textContent = repoName;
+    getRepoIssues(repoName);
+  } else {
+    // replace() methoed replaces current resource or page with the one at the provided URL
+    // if no repo is given, errdirect to the homepage
+    document.location.replace("./index.html");
+  }
   console.log(repoName);
 };
 
@@ -50,11 +59,13 @@ var getRepoIssues = function (repo) {
         }
       });
     } else {
-      alert("There was a problem with your request!");
+      // replace() methoed replaces current resource or page with the one at the provided URL
+      // if no repo is given, redirect to the homepage
+      document.location.replace("./index.html");
     }
 
   });
-  console.log(repo);
+
 
 
 
